@@ -16,7 +16,7 @@ public class 소수구하기 {
 
         //Math.sqrt(N) -> N = a * b에서 a 또는 b가 N보다 클 수 없음
         // a, b중 N의 제곱근보다 크지 않은 수의 배수는 소수가 아닌 수로 다 걸러지기 때문에 N의 제곱근까지만 탐색하면 됨
-        for (int i = 2; i < Math.sqrt(N); i++) {
+        for (int i = 2; i <= Math.sqrt(N); i++) {
             //0이면 넘어감
             if (A[i] == 0) {
                 continue;
@@ -27,7 +27,7 @@ public class 소수구하기 {
             }
         }
         
-        for (int i = M; i < N; i++) {
+        for (int i = M; i <= N; i++) {
             if (A[i] != 0) {
                 System.out.println(A[i]);
             }
