@@ -8,42 +8,50 @@ public class 팰린드롬 {
         Scanner sc = new Scanner(System.in);
         int N = sc.nextInt();
         int result = 0;
-        int[] A = new int[1000001];
+        int[] A = new int[1004000];
 
-        for (int i = 2; i < 1000001; i++) {
+        for (int i = 2; i < 1004000; i++) {
             A[i] = i;
         }
 
         //소수 찾는 구간
-        for (int i = 2; i < Math.sqrt(1000001); i++) {
+        for (int i = 2; i < Math.sqrt(1004000); i++) {
             if (A[i] == 0) {
                 continue;
             }
-            for (int j = i+i; j < 1000001; j = j+i) {
+            for (int j = i+i; j < 1004000; j = j+i) {
                 A[j] = 0;
             }
         }
 
         //팰린드롬수 찾는 구간
-        for (int i = N; i < 1000001; i++) {
-            if (result != 0) {
-                break;
-            }
-            char[] number = Integer.toString(A[i]).toCharArray();
-            if (number.length >= 3) {
-                int startIndex = 0;
-                int endIndex = number.length - 1;
-                while (number[startIndex] == number[endIndex - startIndex]) {
-                    if (startIndex == endIndex - startIndex) {
-                        result = i;
-                        break;
-                    }
-                    startIndex++;
+        int i = N;
+        while (true) {
+            if (A[i] != 0) {
+                int ressult = A[i];
+                if (isPalindrome(ressult)) {
+                    System.out.println(ressult);
+                    break;
                 }
             }
+            i++;
         }
-        System.out.println(result);
 
+    }
+
+    private static boolean isPalindrome(int target) {
+        char[] temp = String.valueOf(target).toCharArray();
+        int startIndex = 0;
+        int endIndex = temp.length - 1;
+
+        while (startIndex < endIndex) {
+            if (temp[startIndex] != temp[endIndex]) {
+                return false;
+            }
+            startIndex++;
+            endIndex--;
+        }
+        return true;
     }
 
 }
