@@ -1,4 +1,4 @@
-package practice.탐색;
+package practice.탐색.dfs;
 
 import java.io.*;
 import java.util.*;
