@@ -14,58 +14,62 @@ import java.util.StringTokenizer;
  */
 public class ABCDE {
 
+    //인접 리스트
     private static ArrayList<Integer>[] A;
 
+    //각 노드의 방문 여부
     private static boolean[] visited;
 
+    //엣지의 개수가 5개면 true로 변경될 값
     private static boolean arrive;
     public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(bf.readLine());
+
         int node = Integer.parseInt(st.nextToken());
         int edge = Integer.parseInt(st.nextToken());
 
-        A = new ArrayList[node+1];
-        visited = new boolean[node+1];
-
-        for (int i = 1; i < node+1; i++) {
+        visited = new boolean[node];
+        A = new ArrayList[node];
+        arrive = false;
+        for (int i = 0; i < node; i++) {
             A[i] = new ArrayList<Integer>();
         }
 
         for (int i = 0; i < edge; i++) {
-            st = new StringTokenizer(br.readLine());
-            int u = Integer.parseInt(st.nextToken());
-            int v = Integer.parseInt(st.nextToken());
+            st = new StringTokenizer(bf.readLine());
+            int a = Integer.parseInt(st.nextToken());
+            int b = Integer.parseInt(st.nextToken());
 
-            A[u].add(v);
-            A[v].add(u);
+            A[a].add(b);
+            A[b].add(a);
         }
 
         for (int i = 0; i < node; i++) {
+            dfs(i, 1);
             if (arrive) {
                 break;
             }
         }
 
-        if(arrive) {
-            System.out.println("1");
+        if (arrive) {
+            System.out.println(1);
         } else {
-            System.out.println("0");
+            System.out.println(0);
         }
-
     }
 
     private static void dfs(int now, int depth) {
-        if (depth == 5 || arrive) { //이미 원하는 케이스를 찾았을 때는 arrive가 true이므로 재귀문 종료
+        if (depth == 5 || arrive) {
             arrive = true;
             return;
-        } else {
-            visited[now] = true;
-            for(int i : A[now]) {
-                dfs(i, depth + 1);
+        }
+        visited[now] = true;
+        for (int i: A[now]) {
+            if (!visited[i]) {
+                dfs(i, depth+1);
             }
         }
         visited[now] = false;
-        //이미 다음 노드를 향해 dfs를 실행했으므로 방문여부의 초기화를 통해 다른 탐색도 해당 노드를 방문
     }
 }
