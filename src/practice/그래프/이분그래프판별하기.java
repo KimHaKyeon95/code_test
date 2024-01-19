@@ -34,6 +34,7 @@ public class 이분그래프판별하기{
                 int b = Integer.parseInt(st.nextToken());
 
                 A[a].add(b);
+                A[b].add(a);
             }
 
             for (int j = 1; j < V+1; j++) {
@@ -56,7 +57,7 @@ public class 이분그래프판별하기{
         for (int i : A[node]) {
             if(!visited[i]) {
                 set[i] = (set[node] + 1) % 2;
-                dfs(node);
+                dfs(i);
             } else if (set[node] == set[i]) {
                 isEven = false;
             }
