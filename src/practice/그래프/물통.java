@@ -57,6 +57,7 @@ public class 물통 {
                 }
 
                 if (!visited[next[0]][next[1]]) {
+                    //방문여부 체크가 아닌 A, B의 물의 양을 경우의 수로 체크해야됨
                     visited[next[0]][next[1]] = true;
                     queue.add(new AB(next[0], next[1]));
                     if (next[0] == 0) { //A의 물의 양이 0인 순간
