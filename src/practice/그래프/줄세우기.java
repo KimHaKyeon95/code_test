@@ -11,7 +11,6 @@ public class 줄세우기 {
 
     private static int[] enter;
     private static ArrayList<Integer>[] A;
-    private static ArrayList<Integer> result;
 
     public static void main(String[] args) throws Exception{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
