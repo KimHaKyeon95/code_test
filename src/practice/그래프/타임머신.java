@@ -15,35 +15,39 @@ public class 타임머신 {
         int N = Integer.parseInt(st.nextToken());
         int M = Integer.parseInt(st.nextToken());
 
-        edges = new CityEdge[M+1];
         distance = new long[N+1];
+        edges = new CityEdge[M+1];
 
-        for (int i = 1; i < M+1; i++) {
+
+        for (int i = 1; i < N+1; i++) {
             distance[i] = Integer.MAX_VALUE;
         }
+        distance[1] = 0;
+
         for (int i = 0; i < M; i++) {
             st = new StringTokenizer(br.readLine());
             int start = Integer.parseInt(st.nextToken());
             int end = Integer.parseInt(st.nextToken());
             int time = Integer.parseInt(st.nextToken());
+
             edges[i] = new CityEdge(start, end, time);
         }
 
-        distance[1] = 0;
         for (int i = 1; i < N; i++) {
             for (int j = 0; j < M; j++) {
-                CityEdge edge = edges[j];
-                if (distance[edge.start] != Integer.MAX_VALUE ) {
-                    distance[edge.end] = Math.min(distance[edge.end], distance[edge.start] + edge.time);
+                CityEdge cityEdge = edges[j];
+                if (distance[cityEdge.start] != Integer.MAX_VALUE) {
+                    distance[cityEdge.end] = Math.min(distance[cityEdge.end], cityEdge.time + distance[cityEdge.start]);
                 }
             }
         }
+
         boolean isMinusCycle = false;
         for (int i = 0; i < M; i++) {
-            CityEdge edge = edges[i];
-            if (distance[edge.start] != Integer.MAX_VALUE
-                && distance[edge.end] > distance[edge.start] + edge.time) {
+            CityEdge cityEdge = edges[i];
+            if (distance[cityEdge.start] != Integer.MAX_VALUE && distance[cityEdge.end] > cityEdge.time + distance[cityEdge.start]) {
                 isMinusCycle = true;
+                break;
             }
         }
 
@@ -58,6 +62,7 @@ public class 타임머신 {
         } else {
             System.out.println(-1);
         }
+
     }
 
 }
