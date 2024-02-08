@@ -1,4 +1,4 @@
-package practice.그래프;
+package practice.그래프.벨만포드;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
