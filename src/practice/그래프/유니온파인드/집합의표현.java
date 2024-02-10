@@ -1,4 +1,4 @@
-package practice.그래프;
+package practice.그래프.유니온파인드;
 
 import java.io.*;
 import java.util.*;
