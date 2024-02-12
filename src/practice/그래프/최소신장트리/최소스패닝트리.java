@@ -77,17 +77,18 @@ public class 최소스패닝트리 {
             parent[m] = n;
         }
     }
-}
 
-class Edge {
+    private static class Edge {
 
-    int start;
-    int end;
-    int weight;
+        int start;
+        int end;
+        int weight;
 
-    public Edge(int start, int end, int weight) {
-        this.start = start;
-        this.end = end;
-        this.weight = weight;
+        public Edge(int start, int end, int weight) {
+            this.start = start;
+            this.end = end;
+            this.weight = weight;
+        }
     }
 }
+
