@@ -78,10 +78,11 @@ public class 다리만들기2 {
                 result += edges.get(i).weight;
             }
         }
-        if (result == 0) {
-            System.out.println(-1);
-        } else {
+
+        if (edgesNum == sNum - 2) {
             System.out.println(result);
+        } else {
+            System.out.println(-1);
         }
     }
 
