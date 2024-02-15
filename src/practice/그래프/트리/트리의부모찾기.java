@@ -5,46 +5,49 @@ import java.util.*;
 
 public class 트리의부모찾기 {
 
-    private static int N;
+    private static ArrayList<Integer>[] edges;
     private static boolean[] visited;
-    private static ArrayList<Integer>[] tree;
-    private static int[] answer;
+
+    private static int[] parents;
 
     public static void main(String[] args) throws Exception{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
 
-        N = Integer.parseInt(st.nextToken());
+        int N = Integer.parseInt(st.nextToken());
+        edges = new ArrayList[N+1];
         visited = new boolean[N+1];
-        tree = new ArrayList[N+1];
-        answer = new int[N+1];
-        for (int i = 0; i < N+1; i++) {
-            tree[i] = new ArrayList<>();
-        }
+        parents = new int[N+1];
 
         for (int i = 1; i < N+1; i++) {
+            edges[i] = new ArrayList<>();
+        }
+
+        for (int i = 1; i < N; i++) {
             st = new StringTokenizer(br.readLine());
             int a = Integer.parseInt(st.nextToken());
             int b = Integer.parseInt(st.nextToken());
 
-            tree[a].add(b);
-            tree[b].add(a);
+            edges[a].add(b);
+            edges[b].add(a);
         }
 
         dfs(1);
         for (int i = 2; i < N+1; i++) {
-            System.out.println(answer[i]);
+            System.out.println(parents[i]);
         }
     }
 
-    private static void dfs(int num) {
-        visited[num] = true;
-        for (int i : tree[num]) {
+    private static void dfs(int a) {
+        if (visited[a]) {
+            return;
+        }
+        visited[a] = true;
+        for (int i : edges[a]) {
             if (!visited[i]) {
-                answer[i] = num;
+                parents[i] = a;
                 dfs(i);
             }
         }
     }
-
 }
