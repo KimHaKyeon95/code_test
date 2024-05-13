@@ -1,4 +1,4 @@
-package practice.탐색.dfs;
+package practice.탐색.dfs.백준13023;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,7 +12,7 @@ import java.util.StringTokenizer;
 탐색 깊이가 5일 때 or 지나온 엣지의 개수가 4일 때 1을 반환하도록 하려함
 그런데 dfs로 한번 탐색을 종료할 때 방문여부와 결과값을 초기화하는 방법이 생각나지 않음
  */
-public class ABCDE {
+public class 백준13023 {
 
     //인접 리스트
     private static ArrayList<Integer>[] A;
